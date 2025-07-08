@@ -1,16 +1,17 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flexi_fonts/flexi_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   group('FlexiFontController Tests', () {
-    late FlexiFontController controller;
-
     setUp(() {
-      controller = FlexiFontController();
+      TestWidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences.setMockInitialValues({});
     });
 
     test('Controller should initialize with default values', () async {
+      final controller = FlexiFontController();
       expect(controller.isInitialized, false);
       expect(controller.selectedFont, null);
       expect(controller.fontScale, 1.0);
@@ -34,6 +35,7 @@ void main() {
     });
 
     test('setFont should update the selected font', () async {
+      final controller = FlexiFontController();
       await controller.initialize(
         includeGoogleFonts: false,
         customFonts: [
@@ -48,9 +50,9 @@ void main() {
         ],
       );
       
-      final newFont = controller.availableFonts.firstWhere(
+      final newFont = controller.availableFonts.where(
         (font) => font.fontFamily == 'TestFont2',
-      );
+      ).first;
       
       await controller.setFont(newFont);
       
@@ -58,6 +60,7 @@ void main() {
     });
 
     test('setFontScale should update the font scale', () async {
+      final controller = FlexiFontController();
       await controller.initialize(
         includeGoogleFonts: false,
         customFonts: [
@@ -75,6 +78,7 @@ void main() {
     });
 
     test('getTextStyle should return a TextStyle with the selected font', () async {
+      final controller = FlexiFontController();
       await controller.initialize(
         includeGoogleFonts: false,
         customFonts: [
@@ -92,6 +96,7 @@ void main() {
     });
 
     test('resetToDefaults should reset font and scale', () async {
+      final controller = FlexiFontController();
       await controller.initialize(
         includeGoogleFonts: false,
         customFonts: [
@@ -106,9 +111,9 @@ void main() {
         ],
       );
       
-      final newFont = controller.availableFonts.firstWhere(
+      final newFont = controller.availableFonts.where(
         (font) => font.fontFamily == 'TestFont2',
-      );
+      ).first;
       
       await controller.setFont(newFont);
       await controller.setFontScale(1.5);
