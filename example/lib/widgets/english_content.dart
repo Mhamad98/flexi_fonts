@@ -7,14 +7,14 @@ class EnglishContent extends StatelessWidget {
   final FlexiFontController fontController;
 
   const EnglishContent({
-    super.key, 
+    super.key,
     required this.fontController,
   });
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -48,22 +48,22 @@ class EnglishContent extends StatelessWidget {
                 Text(
                   'Font Examples',
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                    color: colorScheme.onPrimary,
-                    fontWeight: FontWeight.bold,
-                  ),
+                        color: colorScheme.onPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 const SizedBox(height: 8.0),
                 Text(
                   'Typography Showcase for FlexiFonts',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: colorScheme.onPrimary.withOpacity(0.9),
-                  ),
+                        color: colorScheme.onPrimary.withOpacity(0.9),
+                      ),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 24.0),
-          
+
           // Info card
           Card(
             elevation: 2,
@@ -95,7 +95,7 @@ class EnglishContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24.0),
-          
+
           // Font sample card
           Card(
             elevation: 2,
@@ -114,8 +114,8 @@ class EnglishContent extends StatelessWidget {
                       Text(
                         'Font Sample',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                     ],
                   ),
@@ -128,18 +128,18 @@ class EnglishContent extends StatelessWidget {
                   Text(
                     'This is a paragraph with the current font. This text demonstrates how the selected font looks in a paragraph format with normal body text size. You can see the details of each character and how they flow together.',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      height: 1.5,
-                    ),
+                          height: 1.5,
+                        ),
                   ),
                   const SizedBox(height: 16.0),
                   Wrap(
                     spacing: 8.0,
                     runSpacing: 8.0,
                     children: [
-                      _buildFontSizeChip('Small', 12.0,context),
-                      _buildFontSizeChip('Medium', 16.0,context),
-                      _buildFontSizeChip('Large', 20.0,context),
-                      _buildFontSizeChip('Extra Large', 24.0,context),
+                      _buildFontSizeChip('Small', 12.0, context),
+                      _buildFontSizeChip('Medium', 16.0, context),
+                      _buildFontSizeChip('Large', 20.0, context),
+                      _buildFontSizeChip('Extra Large', 24.0, context),
                     ],
                   ),
                 ],
@@ -147,7 +147,7 @@ class EnglishContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24.0),
-          
+
           // RTL support card
           Card(
             elevation: 2,
@@ -163,17 +163,18 @@ class EnglishContent extends StatelessWidget {
                   Row(
                     children: [
                       Icon(
-                        Icons.translate, 
+                        Icons.translate,
                         color: colorScheme.onPrimaryContainer,
                       ),
                       const SizedBox(width: 8.0),
                       Expanded(
                         child: Text(
                           'RTL Language Support',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: colorScheme.onPrimaryContainer,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: colorScheme.onPrimaryContainer,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ),
                     ],
@@ -214,7 +215,7 @@ class EnglishContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24.0),
-          
+
           // Custom styled text with card
           Card(
             elevation: 2,
@@ -267,14 +268,14 @@ class EnglishContent extends StatelessWidget {
               ),
             ),
           ),
-          
+
           // Local fonts showcase
           const SizedBox(height: 24.0),
           LocalFontsShowcase(
             fontController: fontController,
             isKurdish: false,
           ),
-          
+
           // Font features card
           const SizedBox(height: 24.0),
           Card(
@@ -289,19 +290,20 @@ class EnglishContent extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
                     children: [
-                      Icon(Icons.check_circle_outline, color: colorScheme.primary),
+                      Icon(Icons.check_circle_outline,
+                          color: colorScheme.primary),
                       const SizedBox(width: 8.0),
                       Text(
                         'FlexiFonts Features',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                     ],
                   ),
                 ),
                 const Divider(height: 1),
-                
+
                 // Feature list
                 _buildFeatureTile(
                   'Google Fonts Integration',
@@ -340,7 +342,7 @@ class EnglishContent extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // Footer
           const SizedBox(height: 32.0),
           Center(
@@ -358,9 +360,9 @@ class EnglishContent extends StatelessWidget {
       ),
     );
   }
-  
+
   // Helper method to build font size chips
-  Widget _buildFontSizeChip(String label, double fontSize,context) {
+  Widget _buildFontSizeChip(String label, double fontSize, context) {
     return Chip(
       label: Text(
         label,
@@ -369,11 +371,11 @@ class EnglishContent extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
     );
   }
-  
+
   // Helper method to build feature tiles
   Widget _buildFeatureTile(
-    String title, 
-    String description, 
+    String title,
+    String description,
     ColorScheme colorScheme,
     IconData icon,
   ) {

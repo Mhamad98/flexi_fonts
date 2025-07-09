@@ -7,22 +7,22 @@ import '../models/font_option.dart';
 abstract class StorageProvider {
   /// Save a string value
   Future<bool> saveString(String key, String value);
-  
+
   /// Save a boolean value
   Future<bool> saveBool(String key, bool value);
-  
+
   /// Save a double value
   Future<bool> saveDouble(String key, double value);
-  
+
   /// Get a string value
   Future<String?> getString(String key);
-  
+
   /// Get a boolean value
   Future<bool?> getBool(String key);
-  
+
   /// Get a double value
   Future<double?> getDouble(String key);
-  
+
   /// Remove a value
   Future<bool> remove(String key);
 }
@@ -34,37 +34,37 @@ class SharedPreferencesStorage implements StorageProvider {
     final prefs = await SharedPreferences.getInstance();
     return prefs.setString(key, value);
   }
-  
+
   @override
   Future<bool> saveBool(String key, bool value) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.setBool(key, value);
   }
-  
+
   @override
   Future<bool> saveDouble(String key, double value) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.setDouble(key, value);
   }
-  
+
   @override
   Future<String?> getString(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString(key);
   }
-  
+
   @override
   Future<bool?> getBool(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool(key);
   }
-  
+
   @override
   Future<double?> getDouble(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getDouble(key);
   }
-  
+
   @override
   Future<bool> remove(String key) async {
     final prefs = await SharedPreferences.getInstance();
@@ -76,20 +76,20 @@ class SharedPreferencesStorage implements StorageProvider {
 class FontStorageUtils {
   /// Key for storing font family
   static const String fontFamilyKey = 'flexi_fonts_selected_font_family';
-  
+
   /// Key for storing font scale
   static const String fontScaleKey = 'flexi_fonts_font_scale';
-  
+
   /// Key for storing whether the font is a Google Font
   static const String isGoogleFontKey = 'flexi_fonts_is_google_font';
-  
+
   /// Storage provider
   final StorageProvider _storage;
-  
+
   /// Constructor
   FontStorageUtils({StorageProvider? storage})
       : _storage = storage ?? SharedPreferencesStorage();
-  
+
   /// Save font option
   Future<bool> saveFont(FontOption font) async {
     try {
@@ -101,7 +101,7 @@ class FontStorageUtils {
       return false;
     }
   }
-  
+
   /// Save font scale
   Future<bool> saveFontScale(double scale) async {
     try {
@@ -111,7 +111,7 @@ class FontStorageUtils {
       return false;
     }
   }
-  
+
   /// Load font family
   Future<String?> loadFontFamily() async {
     try {
@@ -121,7 +121,7 @@ class FontStorageUtils {
       return null;
     }
   }
-  
+
   /// Load whether the font is a Google Font
   Future<bool> loadIsGoogleFont() async {
     try {
@@ -131,7 +131,7 @@ class FontStorageUtils {
       return true;
     }
   }
-  
+
   /// Load font scale
   Future<double> loadFontScale() async {
     try {
@@ -141,7 +141,7 @@ class FontStorageUtils {
       return 1.0;
     }
   }
-  
+
   /// Reset all font settings
   Future<bool> resetFontSettings() async {
     try {

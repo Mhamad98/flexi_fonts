@@ -11,7 +11,8 @@ import 'package:provider/provider.dart';
 import 'package:flexi_fonts/flexi_fonts.dart';
 
 void main() {
-  testWidgets('FlexiFontSelectorWidget basic test', (WidgetTester tester) async {
+  testWidgets('FlexiFontSelectorWidget basic test',
+      (WidgetTester tester) async {
     // Create a controller
     final controller = FlexiFontController();
     await controller.initialize(
@@ -23,7 +24,7 @@ void main() {
         ),
       ],
     );
-    
+
     // Build our widget and trigger a frame
     await tester.pumpWidget(
       MaterialApp(
@@ -40,7 +41,7 @@ void main() {
 
     // Verify that the title is displayed
     expect(find.text('Test Font Selector'), findsOneWidget);
-    
+
     // Verify that the font is displayed
     expect(find.text('TestFont'), findsOneWidget);
   });

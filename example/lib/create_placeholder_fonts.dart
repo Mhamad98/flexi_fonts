@@ -21,7 +21,7 @@ void main() async {
     'Rabar-Bold.ttf',
     'Unikurd-Regular.ttf',
     'Unikurd-Bold.ttf',
-    
+
     // English fonts
     'Montserrat-Regular.ttf',
     'Montserrat-Bold.ttf',

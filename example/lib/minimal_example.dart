@@ -6,11 +6,11 @@ import 'package:flexi_fonts/flexi_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // 1. Initialize the controller
   final fontController = FlexiFontController();
   await fontController.initialize();
-  
+
   // 2. Provide the controller to the app
   runApp(
     ChangeNotifierProvider.value(
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // 3. Apply the font to your theme
     final fontController = Provider.of<FlexiFontController>(context);
-    
+
     return MaterialApp(
       title: 'Minimal FlexiFonts Example',
       theme: fontController.applyToTheme(ThemeData.light()),

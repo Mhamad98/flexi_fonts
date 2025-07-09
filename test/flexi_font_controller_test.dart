@@ -16,7 +16,7 @@ void main() {
       expect(controller.selectedFont, null);
       expect(controller.fontScale, 1.0);
       expect(controller.availableFonts, isEmpty);
-      
+
       await controller.initialize(
         includeGoogleFonts: false,
         customFonts: [
@@ -26,7 +26,7 @@ void main() {
           ),
         ],
       );
-      
+
       expect(controller.isInitialized, true);
       expect(controller.selectedFont, isNotNull);
       expect(controller.selectedFont!.fontFamily, 'TestFont');
@@ -49,13 +49,15 @@ void main() {
           ),
         ],
       );
-      
-      final newFont = controller.availableFonts.where(
-        (font) => font.fontFamily == 'TestFont2',
-      ).first;
-      
+
+      final newFont = controller.availableFonts
+          .where(
+            (font) => font.fontFamily == 'TestFont2',
+          )
+          .first;
+
       await controller.setFont(newFont);
-      
+
       expect(controller.selectedFont, newFont);
     });
 
@@ -70,14 +72,15 @@ void main() {
           ),
         ],
       );
-      
+
       const newScale = 1.5;
       await controller.setFontScale(newScale);
-      
+
       expect(controller.fontScale, newScale);
     });
 
-    test('getTextStyle should return a TextStyle with the selected font', () async {
+    test('getTextStyle should return a TextStyle with the selected font',
+        () async {
       final controller = FlexiFontController();
       await controller.initialize(
         includeGoogleFonts: false,
@@ -88,9 +91,9 @@ void main() {
           ),
         ],
       );
-      
+
       final style = controller.getTextStyle();
-      
+
       expect(style, isA<TextStyle>());
       expect(style.fontFamily, 'TestFont');
     });
@@ -110,16 +113,18 @@ void main() {
           ),
         ],
       );
-      
-      final newFont = controller.availableFonts.where(
-        (font) => font.fontFamily == 'TestFont2',
-      ).first;
-      
+
+      final newFont = controller.availableFonts
+          .where(
+            (font) => font.fontFamily == 'TestFont2',
+          )
+          .first;
+
       await controller.setFont(newFont);
       await controller.setFontScale(1.5);
-      
+
       await controller.resetToDefaults();
-      
+
       expect(controller.fontScale, 1.0);
       expect(controller.selectedFont!.fontFamily, 'TestFont1');
     });

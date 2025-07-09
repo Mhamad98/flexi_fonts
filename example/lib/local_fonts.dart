@@ -8,19 +8,19 @@ class LocalFonts {
       // Actual local Kurdish fonts
       const FontOption(
         fontFamily: 'Rabar',
-        isGoogleFont: false,  // This is a local font
+        isGoogleFont: false, // This is a local font
         category: FontCategory.sansSerif,
         displayName: 'Rabar',
         sampleText: 'ئەمە نموونەیەکە بۆ فۆنتی ڕابەر',
       ),
       const FontOption(
         fontFamily: 'SarchiaAbdulrahman',
-        isGoogleFont: false,  // This is a local font
+        isGoogleFont: false, // This is a local font
         category: FontCategory.serif,
         displayName: 'Sarchia Abdulrahman',
         sampleText: 'ئەمە نموونەیەکە بۆ فۆنتی سەرچیا عەبدولڕەحمان',
       ),
-      
+
       // Some Google Fonts for comparison
       const FontOption(
         fontFamily: 'Noto Sans Arabic',

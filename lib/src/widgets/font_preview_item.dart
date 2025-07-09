@@ -7,16 +7,16 @@ import '../models/font_option.dart';
 class FontPreviewItem extends StatelessWidget {
   /// The font option to preview
   final FontOption fontOption;
-  
+
   /// Whether this font is currently selected
   final bool isSelected;
-  
+
   /// Callback when the font is selected
   final VoidCallback? onTap;
-  
+
   /// Font size for the preview text
   final double previewFontSize;
-  
+
   /// Font scale factor
   final double fontScale;
 
@@ -37,7 +37,9 @@ class FontPreviewItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
         decoration: BoxDecoration(
-          color: isSelected ? Theme.of(context).colorScheme.primaryContainer : null,
+          color: isSelected
+              ? Theme.of(context).colorScheme.primaryContainer
+              : null,
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Column(
@@ -64,14 +66,16 @@ class FontPreviewItem extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8.0),
-            
+
             // Font preview with RTL support
             Builder(
               builder: (context) {
                 // Simple RTL detection for Arabic, Hebrew, etc.
-                final hasRtlChars = RegExp(r'[\u0600-\u06FF\u0590-\u05FF]').hasMatch(fontOption.sampleText);
+                final hasRtlChars = RegExp(r'[\u0600-\u06FF\u0590-\u05FF]')
+                    .hasMatch(fontOption.sampleText);
                 return Directionality(
-                  textDirection: hasRtlChars ? TextDirection.rtl : TextDirection.ltr,
+                  textDirection:
+                      hasRtlChars ? TextDirection.rtl : TextDirection.ltr,
                   child: Text(
                     fontOption.sampleText,
                     style: _getPreviewTextStyle(),
@@ -92,7 +96,7 @@ class FontPreviewItem extends StatelessWidget {
     final baseStyle = TextStyle(
       fontSize: previewFontSize * fontScale,
     );
-    
+
     if (fontOption.isGoogleFont) {
       try {
         return GoogleFonts.getFont(

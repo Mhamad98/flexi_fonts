@@ -18,10 +18,11 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   bool _showFontSelector = false;
   late TabController _tabController;
-  
+
   @override
   void initState() {
     super.initState();
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       }
     });
   }
-  
+
   @override
   void dispose() {
     _tabController.dispose();
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     final fontController = Provider.of<FlexiFontController>(context);
     final colorScheme = Theme.of(context).colorScheme;
     final isKurdish = _tabController.index == 0;
-    
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colorScheme.inversePrimary,
@@ -73,8 +74,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             },
           ),
         ],
-        bottom: _showFontSelector 
-            ? null 
+        bottom: _showFontSelector
+            ? null
             : TabBar(
                 controller: _tabController,
                 tabs: const [
@@ -110,7 +111,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     });
                   },
                 ),
-                
+
                 // Content based on selected tab
                 Expanded(
                   child: TabBarView(
@@ -123,17 +124,19 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
               ],
             ),
-      floatingActionButton: _showFontSelector ? FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _showFontSelector = false;
-          });
-        },
-        tooltip: 'Back to Content',
-        backgroundColor: colorScheme.primaryContainer,
-        foregroundColor: colorScheme.onPrimaryContainer,
-        child: const Icon(Icons.arrow_back),
-      ) : null,
+      floatingActionButton: _showFontSelector
+          ? FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  _showFontSelector = false;
+                });
+              },
+              tooltip: 'Back to Content',
+              backgroundColor: colorScheme.primaryContainer,
+              foregroundColor: colorScheme.onPrimaryContainer,
+              child: const Icon(Icons.arrow_back),
+            )
+          : null,
     );
   }
 }

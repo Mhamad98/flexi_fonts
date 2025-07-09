@@ -12,38 +12,39 @@ class FlexiFontController extends ChangeNotifier {
 
   /// Get the singleton instance
   factory FlexiFontController({StorageProvider? storageProvider}) {
-    _instance ??= FlexiFontController._internal(storageProvider: storageProvider);
+    _instance ??=
+        FlexiFontController._internal(storageProvider: storageProvider);
     return _instance!;
   }
 
   /// Storage utility for font preferences
   final FontStorageUtils _storage;
-  
+
   /// Currently selected font option
   FontOption? _selectedFont;
-  
+
   /// Font scale factor (1.0 is normal)
   double _fontScale = 1.0;
-  
+
   /// List of available font options
   final List<FontOption> _availableFonts = [];
-  
+
   /// Whether the controller has been initialized
   bool _initialized = false;
-  
+
   /// Internal constructor with optional storage provider
-  FlexiFontController._internal({StorageProvider? storageProvider}) 
+  FlexiFontController._internal({StorageProvider? storageProvider})
       : _storage = FontStorageUtils(storage: storageProvider);
 
   /// Get the currently selected font option
   FontOption? get selectedFont => _selectedFont;
-  
+
   /// Get the current font scale factor
   double get fontScale => _fontScale;
-  
+
   /// Get the list of available font options
   List<FontOption> get availableFonts => List.unmodifiable(_availableFonts);
-  
+
   /// Check if the controller has been initialized
   bool get isInitialized => _initialized;
 
@@ -54,41 +55,41 @@ class FlexiFontController extends ChangeNotifier {
     bool includeGoogleFonts = true,
   }) async {
     if (_initialized) return;
-    
+
     // Clear existing fonts
     _availableFonts.clear();
-    
+
     // Add custom fonts if provided
     if (customFonts != null && customFonts.isNotEmpty) {
       _availableFonts.addAll(customFonts);
     }
-    
+
     // Add Google Fonts if requested
     if (includeGoogleFonts) {
       _availableFonts.addAll(FontConstants.defaultGoogleFonts);
     }
-    
+
     // Add system fonts
     _availableFonts.addAll(FontConstants.systemFonts);
-    
+
     // Load saved preferences
     await _loadSavedFont();
-    
+
     // If no font is selected and a default is provided, use it
     if (_selectedFont == null && defaultFont != null) {
       _selectedFont = _findFontOption(defaultFont.fontFamily) ?? defaultFont;
-      
+
       // If the default font is not in the available fonts, add it
       if (!_availableFonts.contains(_selectedFont)) {
         _availableFonts.add(_selectedFont!);
       }
     }
-    
+
     // If still no font is selected, use the first available font
-    _selectedFont ??= _availableFonts.isNotEmpty 
-        ? _availableFonts.first 
+    _selectedFont ??= _availableFonts.isNotEmpty
+        ? _availableFonts.first
         : const FontOption(fontFamily: 'Roboto', isGoogleFont: true);
-    
+
     _initialized = true;
     notifyListeners();
   }
@@ -98,24 +99,24 @@ class FlexiFontController extends ChangeNotifier {
     try {
       // Load font scale
       _fontScale = await _storage.loadFontScale();
-      
+
       // Load font family
       final savedFontFamily = await _storage.loadFontFamily();
       if (savedFontFamily == null) return;
-      
+
       // Load whether it's a Google Font
       final isGoogleFont = await _storage.loadIsGoogleFont();
-      
+
       // Find the font in available fonts
       _selectedFont = _findFontOption(savedFontFamily);
-      
+
       // If not found, create a new FontOption
       if (_selectedFont == null) {
         _selectedFont = FontOption(
           fontFamily: savedFontFamily,
           isGoogleFont: isGoogleFont,
         );
-        
+
         // Add to available fonts if not already there
         if (!_availableFonts.contains(_selectedFont)) {
           _availableFonts.add(_selectedFont!);
@@ -140,10 +141,10 @@ class FlexiFontController extends ChangeNotifier {
   /// Set the selected font and save to storage
   Future<void> setFont(FontOption font) async {
     if (_selectedFont == font) return;
-    
+
     _selectedFont = font;
     notifyListeners();
-    
+
     try {
       await _storage.saveFont(font);
     } catch (e) {
@@ -154,10 +155,10 @@ class FlexiFontController extends ChangeNotifier {
   /// Set the font scale factor and save to storage
   Future<void> setFontScale(double scale) async {
     if (_fontScale == scale) return;
-    
+
     _fontScale = scale;
     notifyListeners();
-    
+
     try {
       await _storage.saveFontScale(scale);
     } catch (e) {
@@ -168,7 +169,7 @@ class FlexiFontController extends ChangeNotifier {
   /// Add a custom font to the available fonts
   void addFont(FontOption font) {
     if (_availableFonts.contains(font)) return;
-    
+
     _availableFonts.add(font);
     notifyListeners();
   }
@@ -176,13 +177,13 @@ class FlexiFontController extends ChangeNotifier {
   /// Remove a font from the available fonts
   void removeFont(FontOption font) {
     if (!_availableFonts.contains(font)) return;
-    
+
     _availableFonts.remove(font);
-    
+
     // If the removed font was selected, select the first available font
     if (_selectedFont == font) {
-      _selectedFont = _availableFonts.isNotEmpty 
-          ? _availableFonts.first 
+      _selectedFont = _availableFonts.isNotEmpty
+          ? _availableFonts.first
           : const FontOption(fontFamily: 'Roboto', isGoogleFont: true);
       notifyListeners();
     }
@@ -193,13 +194,13 @@ class FlexiFontController extends ChangeNotifier {
     if (_selectedFont == null) {
       return baseStyle ?? const TextStyle(fontSize: 14.0);
     }
-    
+
     TextStyle style = baseStyle ?? const TextStyle(fontSize: 14.0);
-    
+
     // Apply font scale - ensure fontSize is not null
     final fontSize = style.fontSize ?? 14.0;
     style = style.copyWith(fontSize: fontSize * _fontScale);
-    
+
     // Apply font family
     if (_selectedFont!.isGoogleFont) {
       try {
@@ -211,7 +212,8 @@ class FlexiFontController extends ChangeNotifier {
         return googleFont;
       } catch (e) {
         // Fallback to system font if Google Font fails
-        debugPrint('Error loading Google Font: ${_selectedFont!.fontFamily}. Falling back to system font.');
+        debugPrint(
+            'Error loading Google Font: ${_selectedFont!.fontFamily}. Falling back to system font.');
         return style.copyWith(fontFamily: _selectedFont!.fontFamily);
       }
     } else {
@@ -223,16 +225,17 @@ class FlexiFontController extends ChangeNotifier {
   /// Apply the selected font to a ThemeData
   ThemeData applyToTheme(ThemeData theme) {
     if (_selectedFont == null) return theme;
-    
+
     // Ensure all text styles have a fontSize
     final ensuredTextTheme = _ensureTextThemeFontSizes(theme.textTheme);
-    
+
     // Create text theme with the selected font
     final textTheme = ensuredTextTheme.apply(
-      fontFamily: _selectedFont!.isGoogleFont ? null : _selectedFont!.fontFamily,
+      fontFamily:
+          _selectedFont!.isGoogleFont ? null : _selectedFont!.fontFamily,
       fontSizeFactor: _fontScale,
     );
-    
+
     // If it's a Google Font, apply it to each text style
     if (_selectedFont!.isGoogleFont) {
       try {
@@ -243,16 +246,17 @@ class FlexiFontController extends ChangeNotifier {
         return theme.copyWith(textTheme: googleFontTextTheme);
       } catch (e) {
         // Fallback to system font if Google Font fails
-        debugPrint('Error loading Google Font: ${_selectedFont!.fontFamily}. Falling back to system font.');
+        debugPrint(
+            'Error loading Google Font: ${_selectedFont!.fontFamily}. Falling back to system font.');
         return theme.copyWith(
           textTheme: textTheme.apply(fontFamily: _selectedFont!.fontFamily),
         );
       }
     }
-    
+
     return theme.copyWith(textTheme: textTheme);
   }
-  
+
   /// Ensure all text styles in a TextTheme have a fontSize
   TextTheme _ensureTextThemeFontSizes(TextTheme textTheme) {
     return TextTheme(
@@ -273,30 +277,30 @@ class FlexiFontController extends ChangeNotifier {
       labelSmall: _ensureFontSize(textTheme.labelSmall, 10.0),
     );
   }
-  
+
   /// Ensure a TextStyle has a fontSize
   TextStyle? _ensureFontSize(TextStyle? style, double defaultSize) {
     if (style == null) return TextStyle(fontSize: defaultSize);
     if (style.fontSize != null) return style;
     return style.copyWith(fontSize: defaultSize);
   }
-  
+
   /// Reset to default font and scale
   Future<void> resetToDefaults() async {
     _fontScale = 1.0;
-    _selectedFont = _availableFonts.isNotEmpty 
-        ? _availableFonts.first 
+    _selectedFont = _availableFonts.isNotEmpty
+        ? _availableFonts.first
         : const FontOption(fontFamily: 'Roboto', isGoogleFont: true);
-    
+
     notifyListeners();
-    
+
     try {
       await _storage.resetFontSettings();
     } catch (e) {
       debugPrint('Error resetting font preferences: $e');
     }
   }
-  
+
   /// Dispose the controller
   @override
   void dispose() {

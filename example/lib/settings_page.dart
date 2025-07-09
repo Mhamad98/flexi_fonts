@@ -9,7 +9,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fontController = Provider.of<FlexiFontController>(context);
-    
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -37,37 +37,30 @@ class SettingsPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 16.0),
-                      
                       _buildFontRecommendation(
-                        context, 
-                        'Noto Sans Arabic', 
+                        context,
+                        'Noto Sans Arabic',
                         'باشترین فۆنت بۆ نووسینی کوردی بە شێوەیەکی ڕوون',
                         fontController,
                       ),
-                      
                       const Divider(),
-                      
                       _buildFontRecommendation(
-                        context, 
-                        'Noto Naskh Arabic', 
+                        context,
+                        'Noto Naskh Arabic',
                         'فۆنتێکی جوان بۆ دەقی درێژ و خوێندنەوە',
                         fontController,
                       ),
-                      
                       const Divider(),
-                      
                       _buildFontRecommendation(
-                        context, 
-                        'Amiri', 
+                        context,
+                        'Amiri',
                         'فۆنتێکی کلاسیکی بۆ نووسینی جوان',
                         fontController,
                       ),
-                      
                       const Divider(),
-                      
                       _buildFontRecommendation(
-                        context, 
-                        'Cairo', 
+                        context,
+                        'Cairo',
                         'فۆنتێکی مۆدێرن و ڕوون بۆ ناونیشان',
                         fontController,
                       ),
@@ -75,9 +68,9 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 16.0),
-              
+
               // Font selector
               const Expanded(
                 child: FlexiFontSelectorWidget(
@@ -94,15 +87,15 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget _buildFontRecommendation(
-    BuildContext context, 
-    String fontName, 
+    BuildContext context,
+    String fontName,
     String description,
     FlexiFontController controller,
   ) {
     final isSelected = controller.selectedFont?.fontFamily == fontName;
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -133,17 +126,19 @@ class SettingsPage extends StatelessWidget {
             ),
           ),
           ElevatedButton(
-            onPressed: isSelected ? null : () {
-              controller.setFont(FontOption(
-                fontFamily: fontName,
-                isGoogleFont: true,
-              ));
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('فۆنتی $fontName هەڵبژێردرا'),
-                ),
-              );
-            },
+            onPressed: isSelected
+                ? null
+                : () {
+                    controller.setFont(FontOption(
+                      fontFamily: fontName,
+                      isGoogleFont: true,
+                    ));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('فۆنتی $fontName هەڵبژێردرا'),
+                      ),
+                    );
+                  },
             child: Text(isSelected ? 'هەڵبژێردراوە' : 'هەڵبژاردن'),
           ),
         ],
@@ -158,7 +153,7 @@ class FontSettingsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fontController = Provider.of<FlexiFontController>(context);
-    
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -173,7 +168,7 @@ class FontSettingsCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16.0),
-            
+
             // Font family
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -186,7 +181,7 @@ class FontSettingsCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8.0),
-            
+
             // Font type
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -201,7 +196,7 @@ class FontSettingsCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8.0),
-            
+
             // Font scale
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -214,7 +209,7 @@ class FontSettingsCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16.0),
-            
+
             // Change font button
             Center(
               child: ElevatedButton.icon(

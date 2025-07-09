@@ -25,7 +25,7 @@ class FontConstants {
       fontFamily: 'Poppins',
       category: FontCategory.sansSerif,
     ),
-    
+
     // Serif fonts
     const FontOption(
       fontFamily: 'Merriweather',
@@ -39,7 +39,7 @@ class FontConstants {
       fontFamily: 'Lora',
       category: FontCategory.serif,
     ),
-    
+
     // Display fonts
     const FontOption(
       fontFamily: 'Pacifico',
@@ -49,7 +49,7 @@ class FontConstants {
       fontFamily: 'Bebas Neue',
       category: FontCategory.display,
     ),
-    
+
     // Handwriting fonts
     const FontOption(
       fontFamily: 'Dancing Script',
@@ -59,7 +59,7 @@ class FontConstants {
       fontFamily: 'Caveat',
       category: FontCategory.handwriting,
     ),
-    
+
     // Monospace fonts
     const FontOption(
       fontFamily: 'Roboto Mono',
@@ -69,7 +69,7 @@ class FontConstants {
       fontFamily: 'Source Code Pro',
       category: FontCategory.monospace,
     ),
-    
+
     // RTL support fonts
     const FontOption(
       fontFamily: 'Amiri',

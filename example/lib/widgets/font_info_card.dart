@@ -17,7 +17,7 @@ class FontInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return Card(
       margin: const EdgeInsets.all(16.0),
       elevation: 2,
@@ -37,7 +37,7 @@ class FontInfoCard extends StatelessWidget {
               ),
               child: Center(
                 child: Icon(
-                  Icons.font_download, 
+                  Icons.font_download,
                   color: colorScheme.onPrimaryContainer,
                   size: 24,
                 ),
@@ -49,7 +49,7 @@ class FontInfoCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isKurdish 
+                    isKurdish
                         ? 'فۆنتی ئێستا: ${fontController.selectedFont?.fontFamily ?? 'بنەڕەتی'}'
                         : 'Current Font: ${fontController.selectedFont?.fontFamily ?? 'Default'}',
                     style: const TextStyle(

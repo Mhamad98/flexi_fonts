@@ -17,22 +17,22 @@ class LocalFontsShowcase extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final localFonts = LocalFonts.getLocalFonts();
-    
+
     // Filter fonts based on language
     final filteredFonts = localFonts.where((font) {
       if (isKurdish) {
-        return font.sampleText.contains('ئەمە') || 
-               font.fontFamily.contains('Kurdish') ||
-               font.fontFamily == 'Rabar' ||
-               font.fontFamily == 'SarchiaAbdulrahman';
+        return font.sampleText.contains('ئەمە') ||
+            font.fontFamily.contains('Kurdish') ||
+            font.fontFamily == 'Rabar' ||
+            font.fontFamily == 'SarchiaAbdulrahman';
       } else {
         return !font.sampleText.contains('ئەمە') &&
-               !font.fontFamily.contains('Kurdish') &&
-               font.fontFamily != 'Rabar' &&
-               font.fontFamily != 'SarchiaAbdulrahman';
+            !font.fontFamily.contains('Kurdish') &&
+            font.fontFamily != 'Rabar' &&
+            font.fontFamily != 'SarchiaAbdulrahman';
       }
     }).toList();
-    
+
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(
@@ -50,16 +50,16 @@ class LocalFontsShowcase extends StatelessWidget {
                 Text(
                   isKurdish ? 'فۆنتە لۆکاڵییەکان' : 'Local Fonts',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ],
             ),
             const Divider(height: 24.0),
-            
+
             // Local fonts list
             ...filteredFonts.map((font) => _buildFontSample(font, context)),
-            
+
             // Instructions
             const SizedBox(height: 16.0),
             Container(
@@ -73,22 +73,24 @@ class LocalFontsShowcase extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    isKurdish ? 'چۆن فۆنتی لۆکاڵی بەکاربهێنین:' : 'How to use local fonts:',
+                    isKurdish
+                        ? 'چۆن فۆنتی لۆکاڵی بەکاربهێنین:'
+                        : 'How to use local fonts:',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 8.0),
                   Text(
-                    isKurdish 
+                    isKurdish
                         ? '١. فایلی فۆنتەکان زیاد بکە بۆ پڕۆژەکەت\n'
-                          '٢. لە فایلی pubspec.yaml دا تۆماریان بکە\n'
-                          '٣. FontOption دروست بکە بۆ هەر فۆنتێک\n'
-                          '٤. isGoogleFont: false دابنێ'
+                            '٢. لە فایلی pubspec.yaml دا تۆماریان بکە\n'
+                            '٣. FontOption دروست بکە بۆ هەر فۆنتێک\n'
+                            '٤. isGoogleFont: false دابنێ'
                         : '1. Add font files to your project\n'
-                          '2. Register them in pubspec.yaml\n'
-                          '3. Create FontOption for each font\n'
-                          '4. Set isGoogleFont: false',
+                            '2. Register them in pubspec.yaml\n'
+                            '3. Create FontOption for each font\n'
+                            '4. Set isGoogleFont: false',
                     style: TextStyle(
                       fontSize: 14.0,
                       color: colorScheme.onSurfaceVariant,
@@ -113,10 +115,10 @@ class LocalFontsShowcase extends StatelessWidget {
       ),
     );
   }
-  
+
   Widget _buildFontSample(FontOption font, BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: InkWell(
@@ -145,7 +147,8 @@ class LocalFontsShowcase extends StatelessWidget {
                   Icon(
                     Icons.text_fields,
                     size: 16,
-                    color: fontController.selectedFont?.fontFamily == font.fontFamily
+                    color: fontController.selectedFont?.fontFamily ==
+                            font.fontFamily
                         ? colorScheme.primary
                         : colorScheme.onSurfaceVariant,
                   ),
@@ -156,14 +159,16 @@ class LocalFontsShowcase extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: font.fontFamily,
                         fontWeight: FontWeight.bold,
-                        color: fontController.selectedFont?.fontFamily == font.fontFamily
+                        color: fontController.selectedFont?.fontFamily ==
+                                font.fontFamily
                             ? colorScheme.primary
                             : colorScheme.onSurface,
                       ),
                     ),
                   ),
                   const Spacer(),
-                  if (fontController.selectedFont?.fontFamily == font.fontFamily)
+                  if (fontController.selectedFont?.fontFamily ==
+                      font.fontFamily)
                     Icon(
                       Icons.check_circle,
                       size: 16,
@@ -173,13 +178,15 @@ class LocalFontsShowcase extends StatelessWidget {
               ),
               const SizedBox(height: 8.0),
               Directionality(
-                textDirection: isKurdish ? TextDirection.rtl : TextDirection.ltr,
+                textDirection:
+                    isKurdish ? TextDirection.rtl : TextDirection.ltr,
                 child: Text(
                   font.sampleText,
                   style: TextStyle(
                     fontFamily: font.fontFamily,
                     fontSize: 14.0,
-                    color: fontController.selectedFont?.fontFamily == font.fontFamily
+                    color: fontController.selectedFont?.fontFamily ==
+                            font.fontFamily
                         ? colorScheme.onPrimaryContainer
                         : colorScheme.onSurfaceVariant,
                   ),

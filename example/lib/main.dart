@@ -6,20 +6,21 @@ import 'local_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Initialize the FlexiFontController with a font that works well with Kurdish
   final fontController = FlexiFontController();
-  
+
   // Get local fonts
   final localFonts = LocalFonts.getLocalFonts();
-  
+
   await fontController.initialize(
-    defaultFont: const FontOption(fontFamily: 'Noto Sans Arabic', isGoogleFont: true),
+    defaultFont:
+        const FontOption(fontFamily: 'Noto Sans Arabic', isGoogleFont: true),
     includeGoogleFonts: true,
     customFonts: [
       // Add local fonts
       ...localFonts,
-      
+
       // Add fonts that work well with Kurdish
       const FontOption(fontFamily: 'Noto Sans Arabic', isGoogleFont: true),
       const FontOption(fontFamily: 'Noto Naskh Arabic', isGoogleFont: true),
@@ -31,7 +32,7 @@ void main() async {
       const FontOption(fontFamily: 'Almarai', isGoogleFont: true),
     ],
   );
-  
+
   runApp(
     ChangeNotifierProvider.value(
       value: fontController,
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // Get the controller from the provider
     final fontController = Provider.of<FlexiFontController>(context);
-    
+
     // Apply the selected font to the theme
     return MaterialApp(
       title: 'FlexiFonts Kurdish Demo',

@@ -7,14 +7,14 @@ class KurdishContent extends StatelessWidget {
   final FlexiFontController fontController;
 
   const KurdishContent({
-    super.key, 
+    super.key,
     required this.fontController,
   });
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Directionality(
@@ -50,22 +50,22 @@ class KurdishContent extends StatelessWidget {
                   Text(
                     'فۆنتی کوردی',
                     style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      color: colorScheme.onPrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                          color: colorScheme.onPrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   const SizedBox(height: 8.0),
                   Text(
                     'نموونەی فۆنتەکان بۆ زمانی کوردی',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: colorScheme.onPrimary.withOpacity(0.9),
-                    ),
+                          color: colorScheme.onPrimary.withOpacity(0.9),
+                        ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 24.0),
-            
+
             // Info card
             Card(
               elevation: 2,
@@ -97,7 +97,7 @@ class KurdishContent extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24.0),
-            
+
             // Kurdish poem with decorative elements
             Container(
               padding: const EdgeInsets.all(20.0),
@@ -126,8 +126,8 @@ class KurdishContent extends StatelessWidget {
                       Text(
                         'هۆنراوەی کوردی',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                     ],
                   ),
@@ -138,9 +138,9 @@ class KurdishContent extends StatelessWidget {
                     'کەس نەڵێ کورد مردووە، کورد زیندووە\n'
                     'زیندووە قەت نانەوێ ئاڵاکەمان',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      height: 1.8,
-                      letterSpacing: 0.3,
-                    ),
+                          height: 1.8,
+                          letterSpacing: 0.3,
+                        ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8.0),
@@ -149,16 +149,16 @@ class KurdishContent extends StatelessWidget {
                     child: Text(
                       '- سروودی نەتەوەیی کوردستان',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        fontStyle: FontStyle.italic,
-                        color: colorScheme.onSurfaceVariant,
-                      ),
+                            fontStyle: FontStyle.italic,
+                            color: colorScheme.onSurfaceVariant,
+                          ),
                     ),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 24.0),
-            
+
             // Kurdish proverbs with list tiles
             Card(
               elevation: 2,
@@ -173,21 +173,23 @@ class KurdishContent extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.auto_stories, 
+                        Icon(
+                          Icons.auto_stories,
                           color: colorScheme.onPrimaryContainer,
                         ),
                         const SizedBox(width: 8.0),
                         Text(
                           'پەندی پێشینان',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: colorScheme.onPrimaryContainer,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: colorScheme.onPrimaryContainer,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 16.0),
-                    
+
                     // Using ListTile for each proverb
                     _buildProverbTile(
                       'دار بە میوەوە دەناسرێتەوە، پیاو بە کردەوە',
@@ -210,7 +212,7 @@ class KurdishContent extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24.0),
-            
+
             // Custom styled text with card
             Card(
               elevation: 2,
@@ -263,17 +265,17 @@ class KurdishContent extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             const SizedBox(height: 24.0),
-            
+
             // Local fonts showcase
             LocalFontsShowcase(
               fontController: fontController,
               isKurdish: true,
             ),
-            
+
             const SizedBox(height: 24.0),
-            
+
             // Kurdish dialects with tabs
             Card(
               elevation: 2,
@@ -291,15 +293,16 @@ class KurdishContent extends StatelessWidget {
                         const SizedBox(width: 8.0),
                         Text(
                           'زاراوەکانی کوردی',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                       ],
                     ),
                   ),
                   const Divider(height: 1),
-                  
+
                   // Dialect examples
                   _buildDialectTile(
                     'سۆرانی',
@@ -327,7 +330,7 @@ class KurdishContent extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             // Footer
             const SizedBox(height: 32.0),
             Center(
@@ -346,7 +349,7 @@ class KurdishContent extends StatelessWidget {
       ),
     );
   }
-  
+
   // Helper method to build proverb list tiles
   Widget _buildProverbTile(String proverb, ColorScheme colorScheme) {
     return Padding(
@@ -373,11 +376,11 @@ class KurdishContent extends StatelessWidget {
       ),
     );
   }
-  
+
   // Helper method to build dialect tiles
   Widget _buildDialectTile(
-    String title, 
-    String description, 
+    String title,
+    String description,
     ColorScheme colorScheme,
     IconData icon,
     Color iconColor,

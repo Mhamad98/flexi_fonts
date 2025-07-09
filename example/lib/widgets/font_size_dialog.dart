@@ -3,9 +3,10 @@ import 'package:flexi_fonts/flexi_fonts.dart';
 
 /// Shows a dialog to adjust the font size
 class FontSizeDialog {
-  static void show(BuildContext context, FlexiFontController controller, bool isKurdish) {
+  static void show(
+      BuildContext context, FlexiFontController controller, bool isKurdish) {
     final colorScheme = Theme.of(context).colorScheme;
-    
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -42,7 +43,8 @@ class FontSizeDialog {
                 const SizedBox(height: 24),
                 Row(
                   children: [
-                    Icon(Icons.text_decrease, 
+                    Icon(
+                      Icons.text_decrease,
                       color: colorScheme.primary,
                       size: 20,
                     ),
@@ -56,7 +58,8 @@ class FontSizeDialog {
                         label: isKurdish ? 'قەبارەی فۆنت' : 'Font Size',
                       ),
                     ),
-                    Icon(Icons.text_increase, 
+                    Icon(
+                      Icons.text_increase,
                       color: colorScheme.primary,
                       size: 20,
                     ),
@@ -64,7 +67,7 @@ class FontSizeDialog {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  isKurdish 
+                  isKurdish
                       ? '${(controller.fontScale * 100).round()}٪'
                       : '${(controller.fontScale * 100).round()}%',
                   style: TextStyle(

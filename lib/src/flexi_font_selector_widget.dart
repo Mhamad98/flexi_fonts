@@ -302,8 +302,6 @@ class _FlexiFontSelectorWidgetState extends State<FlexiFontSelectorWidget> {
         return isRtl ? 'دەستنووس' : 'Handwriting';
       case FontCategory.monospace:
         return isRtl ? 'مۆنۆسپەیس' : 'Monospace';
-      default:
-        return isRtl ? 'تر' : 'Other';
     }
   }
 }

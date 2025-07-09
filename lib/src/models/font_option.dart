@@ -1,4 +1,3 @@
-
 /// Enum representing different font categories
 enum FontCategory {
   sansSerif,
@@ -12,19 +11,19 @@ enum FontCategory {
 class FontOption {
   /// The font family name
   final String fontFamily;
-  
+
   /// Whether this font is from Google Fonts
   final bool isGoogleFont;
-  
+
   /// The category of the font
   final FontCategory category;
-  
+
   /// Optional display name (if different from fontFamily)
   final String? displayName;
-  
+
   /// Sample text to display in the preview
   final String sampleText;
-  
+
   /// Constructor
   const FontOption({
     required this.fontFamily,
@@ -33,10 +32,10 @@ class FontOption {
     this.displayName,
     this.sampleText = 'The quick brown fox jumps over the lazy dog',
   });
-  
+
   /// Get the display name (falls back to fontFamily if not set)
   String get name => displayName ?? fontFamily;
-  
+
   /// Create a copy of this FontOption with some fields replaced
   FontOption copyWith({
     String? fontFamily,
@@ -53,13 +52,13 @@ class FontOption {
       sampleText: sampleText ?? this.sampleText,
     );
   }
-  
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     return other is FontOption && other.fontFamily == fontFamily;
   }
-  
+
   @override
   int get hashCode => fontFamily.hashCode;
 }

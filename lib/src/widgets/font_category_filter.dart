@@ -6,13 +6,13 @@ import '../models/font_option.dart';
 class FontCategoryFilter extends StatelessWidget {
   /// The currently selected category
   final FontCategory? selectedCategory;
-  
+
   /// Callback when a category is selected
   final Function(FontCategory?) onCategorySelected;
-  
+
   /// Whether to show the "All" option
   final bool showAllOption;
-  
+
   /// Constructor
   const FontCategoryFilter({
     super.key,
@@ -24,7 +24,7 @@ class FontCategoryFilter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
-    
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
@@ -74,9 +74,9 @@ class FontCategoryFilter extends StatelessWidget {
     FontCategory? category,
     String label,
   ) {
-    final isSelected = category == selectedCategory || 
+    final isSelected = category == selectedCategory ||
         (category == null && selectedCategory == null);
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4.0),
       child: FilterChip(

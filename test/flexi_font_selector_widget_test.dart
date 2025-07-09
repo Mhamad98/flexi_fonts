@@ -34,7 +34,8 @@ void main() {
       );
     });
 
-    testWidgets('FlexiFontSelectorWidget should display fonts', (WidgetTester tester) async {
+    testWidgets('FlexiFontSelectorWidget should display fonts',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: ChangeNotifierProvider.value(
@@ -68,7 +69,8 @@ void main() {
       expect(find.text('TestFont3'), findsOneWidget);
     });
 
-    testWidgets('FlexiFontSelectorWidget should have search functionality', (WidgetTester tester) async {
+    testWidgets('FlexiFontSelectorWidget should have search functionality',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: ChangeNotifierProvider.value(
@@ -87,7 +89,7 @@ void main() {
 
       // Check if search field exists
       expect(find.byType(TextField), findsOneWidget);
-      
+
       // Enter search text
       await tester.enterText(find.byType(TextField), 'TestFont1');
       await tester.pumpAndSettle();
@@ -96,7 +98,8 @@ void main() {
       expect(find.text('TestFont1'), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('FlexiFontSelectorWidget should select font on tap', (WidgetTester tester) async {
+    testWidgets('FlexiFontSelectorWidget should select font on tap',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: ChangeNotifierProvider.value(

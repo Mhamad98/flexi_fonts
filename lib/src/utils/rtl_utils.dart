@@ -17,16 +17,16 @@ class RtlUtils {
       // Kurdish
       RegExp(r'[\u0750-\u077F]'),
     ];
-    
+
     for (final range in rtlRanges) {
       if (range.hasMatch(text)) {
         return true;
       }
     }
-    
+
     return false;
   }
-  
+
   /// Wrap text in a Directionality widget if it contains RTL characters
   static Widget wrapWithDirectionality({
     required Widget child,
@@ -34,14 +34,14 @@ class RtlUtils {
     TextDirection defaultDirection = TextDirection.ltr,
   }) {
     final isRtl = containsRtl(text);
-    
+
     if (isRtl) {
       return Directionality(
         textDirection: TextDirection.rtl,
         child: child,
       );
     }
-    
+
     return defaultDirection == TextDirection.rtl
         ? Directionality(
             textDirection: TextDirection.rtl,
@@ -49,23 +49,23 @@ class RtlUtils {
           )
         : child;
   }
-  
+
   /// Get the appropriate text direction for a string
   static TextDirection getTextDirection(String text) {
     return containsRtl(text) ? TextDirection.rtl : TextDirection.ltr;
   }
-  
+
   /// Get a list of supported RTL languages
   static List<String> get supportedRtlLanguages => [
-    'ar', // Arabic
-    'he', // Hebrew
-    'fa', // Persian/Farsi
-    'ur', // Urdu
-    'ku', // Kurdish
-    'sd', // Sindhi
-    'dv', // Dhivehi
-  ];
-  
+        'ar', // Arabic
+        'he', // Hebrew
+        'fa', // Persian/Farsi
+        'ur', // Urdu
+        'ku', // Kurdish
+        'sd', // Sindhi
+        'dv', // Dhivehi
+      ];
+
   /// Check if a language code is RTL
   static bool isRtlLanguage(String languageCode) {
     return supportedRtlLanguages.contains(languageCode.toLowerCase());

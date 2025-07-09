@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 class FontScaleSlider extends StatelessWidget {
   /// The current font scale value
   final double value;
-  
+
   /// Callback when the font scale changes
   final ValueChanged<double> onChanged;
-  
+
   /// Minimum scale value
   final double min;
-  
+
   /// Maximum scale value
   final double max;
-  
+
   /// Number of divisions in the slider
   final int? divisions;
-  
+
   /// Label to display above the slider
   final String? label;
 
@@ -45,7 +45,7 @@ class FontScaleSlider extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ),
-        
+
         // Slider with labels
         Row(
           children: [
@@ -63,12 +63,12 @@ class FontScaleSlider extends StatelessWidget {
             const Icon(Icons.text_increase, size: 20),
           ],
         ),
-        
+
         // Current value indicator
         Center(
           child: Text(
             Directionality.of(context) == TextDirection.rtl
-                ? '${(value * 100).round()}٪'  // Arabic percentage sign
+                ? '${(value * 100).round()}٪' // Arabic percentage sign
                 : '${(value * 100).round()}%',
             style: Theme.of(context).textTheme.bodySmall,
           ),
