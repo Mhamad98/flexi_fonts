@@ -1,6 +1,6 @@
 name: flexi_fonts
 description: "A Flutter package for dynamically changing app fonts at runtime with Google Fonts integration and persistence."
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/Mhamad98/flexi_fonts
 repository: https://github.com/Mhamad98/flexi_fonts
 issue_tracker: https://github.com/Mhamad98/flexi_fonts/issues
